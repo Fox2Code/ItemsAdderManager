@@ -24,8 +24,6 @@ This module creates a `iapacks` folder, where you can drag existing item adder a
 just drop the modules you want there and restart the server.  
 (You may want to reset the map for ItemsAdder packs that change generation)
 
-You should extract resource ItemsAdderManager can't read in `iapacks/data` instead of `plugins/ItemsAdder/data` directly.
-
 For fast initial setup for survival multi players (aka. SMP) you can type `/iasetup force` or `/iamanager setup force`.
 
 By default, the plugin prevent itself from touching `ItemsAdder/data` folder if it already exists, 
@@ -36,11 +34,11 @@ it's a kernel limitation that has nothing to do with security.
 
 ## Easy setup for new servers
 
-Step 1: Setup hosting method (Try self-hosting if possible)
-Step 2: Run `/iasetup` or `/iasetup force`
-Step 3: Put all your packs in the `iapacks` folder.
-Step 4: Run `/iamanager reload`
-Step 5: Have fun
+Step 1: Setup hosting method (Try self-hosting if possible)  
+Step 2: Run `/iasetup` or `/iasetup force`  
+Step 3: Put all your packs in the `iapacks` folder.  
+Step 4: Run `/iamanager reload`  
+Step 5: Have fun  
 
 Note: You may want to delete the world between step 4 and 5 to get new generation.
 
