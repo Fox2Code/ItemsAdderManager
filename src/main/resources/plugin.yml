@@ -1,0 +1,29 @@
+name: ItemsAdderManager
+version: '${version}'
+main: com.fox2code.itemsaddermanager.ItemsAdderManager
+api-version: 1.17
+authors: [ Fox2Code ]
+description: ItemsAdder pack manager, made for simple SMPs.
+website: https://github.com/Fox2Code/ItemsAdderManager
+load: STARTUP
+depend:
+  - ItemsAdder
+loadbefore:
+  - ItemsAdder
+  - Slimefun
+softdepend:
+  - Slimefun
+  - LuckPerms
+  - Vault
+commands:
+  iamanager:
+    permission: ia.admin.manager
+    description: "ItemsAdderManager command"
+    aliases: [iapackmanager, iam]
+  iareloadpacks:
+    permission: ia.admin.manager
+    description: "Reload item adder packs"
+    aliases: [reloadpacks, reloadiapacks]
+  iasetup:
+    permission: ia.admin.manager
+    description: "Setup ItemsAdder basic configuration and reload"

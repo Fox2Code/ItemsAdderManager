@@ -1,0 +1,7 @@
+# It's not recommended to edit this file unless you know what you are doing
+debug: false
+verbose: false
+autoReload: true
+autoCleanup: true
+specialPaths:
+  - "PluginName/configuration.yml"
