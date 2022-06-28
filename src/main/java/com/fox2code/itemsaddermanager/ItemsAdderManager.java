@@ -129,7 +129,7 @@ public final class ItemsAdderManager extends JavaPlugin implements Listener {
             this.getLogger().warning("Failed to create \"iapacks/data/items_packs\"");
         }
         if (!iaPacksResources.isDirectory() && !iaPacksResources.mkdirs()) {
-            this.getLogger().warning("Failed to create \"iapacks/data/items_packs\"");
+            this.getLogger().warning("Failed to create \"iapacks/data/resource_pack\"");
         }
     }
 
