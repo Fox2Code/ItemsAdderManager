@@ -38,14 +38,16 @@ public final class ItemsAdderManager extends JavaPlugin implements Listener {
     static String version; static boolean debug, verbose;
     private static ItemsAdderManager instance;
     private final DummyCommandSender dummyCommandSender;
-    private final File iaPacks = new File(this.getDataFolder()
-            .getParentFile().getParentFile().getAbsoluteFile(), "iapacks");
+    private final File pluginFolder = Objects.requireNonNull(
+            this.getDataFolder().getAbsoluteFile());
+    private final File iaPacks = new File(this.pluginFolder
+            .getParentFile().getParentFile(), "iapacks");
     private final File iaPackConfigs = new File(this.iaPacks, "configs.yml");
     private final File iaPackData = new File(this.iaPacks, "data");
-    private final File iaData = new File(this.getDataFolder().getAbsoluteFile()
-            .getParentFile(), "ItemsAdder" + File.separator + "data");
-    private final File iaConfig = new File(this.getDataFolder().getAbsoluteFile()
-            .getParentFile(), "ItemsAdder" + File.separator + "config.yml");
+    private final File iaData = new File(this.pluginFolder, "" +
+            "ItemsAdder" + File.separator + "data");
+    private final File iaConfig = new File(this.pluginFolder,
+            "ItemsAdder" + File.separator + "config.yml");
     private final File iaDataMarker = new File(this.iaData, ".iam");
     private boolean allowModifications = (!this.iaData.exists()) || this.iaDataMarker.exists();
     private final HashMap<String, ItemsAdderPack> itemsAdderPacks = new HashMap<>();
@@ -275,7 +277,8 @@ public final class ItemsAdderManager extends JavaPlugin implements Listener {
                 } catch (IOException e) {
                     throw new RuntimeException("Failed to register ItemsAdder pack", e);
                 }
-            } else if (javaPlugin.getResource("iapack.yml") != null) {
+            } else if (javaPlugin.getResource("iapack.yml") != null ||
+                    javaPlugin.getResource("data/items_packs/") != null) {
                 try {
                     this.itemsAdderPacks.put(javaPlugin.getName(), new ItemsAdderPack(javaPlugin));
                 } catch (IOException e) {
@@ -323,10 +326,10 @@ public final class ItemsAdderManager extends JavaPlugin implements Listener {
         // Step-5 apply ItemsAdder packs
         this.getLogger().info("Applying packs...");
         PluginManager pluginManager = this.getServer().getPluginManager();
-        ItemsAdderPackApplier itemsAdderPackApplier = new ItemsAdderPackApplier(itemsAdderPacks,
-                this.getDataFolder().getParentFile(), this.iaPackData, this.iaData);
+        ItemsAdderPackApplier itemsAdderPackApplier = new ItemsAdderPackApplier(
+                itemsAdderPacks, this.pluginFolder, this.iaPackData, this.iaData);
         if (pluginManager.getPlugin("Slimefun") != null) {
-            SlimeFunCompat.applyCompat(this, this.getDataFolder().getParentFile());
+            SlimeFunCompat.applyCompat(this, this.pluginFolder);
             itemsAdderPackApplier.addAllowedFile("Slimefun/item-models.yml");
         }
         List<String> specialPaths = this.getConfig().getStringList("specialPaths");
